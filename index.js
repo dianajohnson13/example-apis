@@ -4,6 +4,8 @@ import dotenv from 'dotenv';
 import { dirname,join } from 'path';
 import { fileURLToPath } from 'url';
 
+import usersRouter from './src/routes/usersRouter';
+
 dotenv.config();
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -16,7 +18,9 @@ app.use(cors(corsOptions));
 app.use(json());
 
 // routes
-app.use('/', express.static(join(__dirname, 'public')))
+app.use('/', express.static(join(__dirname, 'public')));
+
+app.use('/api/users', usersRouter);
 
 const PORT = process.env.PORT || 5000;
 
