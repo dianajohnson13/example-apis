@@ -5,6 +5,7 @@ import { dirname,join } from 'path';
 import { fileURLToPath } from 'url';
 
 import usersRouter from './src/routes/usersRouter.js';
+import authRouter from './src/routes/authRouter.js';
 
 dotenv.config();
 
@@ -21,6 +22,7 @@ app.use(json());
 app.use('/', express.static(join(__dirname, 'public')));
 
 app.use('/api/users', usersRouter);
+app.use('/api/auth', authRouter);
 
 const PORT = process.env.PORT || 5000;
 

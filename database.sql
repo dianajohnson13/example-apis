@@ -11,7 +11,10 @@ CREATE TABLE users (
 
 SELECT * FROM users;
 
-INSERT INTO users (user_name,user_email,user_password) VALUES ('John Doe', 'johndoe@email.com', 'supersecretpassword');
+
+-- Don't actually insert them like this. The user's password won't work with auth b/c encryption
+    -- INSERT INTO users (user_name,user_email,user_password) 
+    --       VALUES ('John Doe', 'johndoe@email.com', 'supersecretpassword');
 
 
 
