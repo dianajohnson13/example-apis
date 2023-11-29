@@ -10,6 +10,12 @@ Description coming soon.
 
 Server runs on http://localhost:5000
 
+## Endpoints
+| Method | Endpoint  | Description |
+| ------------- | ------------- |:-------------:|
+| POST | `/api/users`      | Registers a new user     |
+
+
 ## Stack
 - Javascript
 - Node
