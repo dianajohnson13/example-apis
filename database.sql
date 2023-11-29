@@ -1,6 +1,6 @@
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp"; -- for uuid generation
 
-CREATE DATABASE mycooldatabase;
+CREATE DATABASE exampledb;
 
 CREATE TABLE users (
     user_id uuid PRIMARY KEY DEFAULT uuid_generate_v4(),
@@ -13,6 +13,9 @@ SELECT * FROM users;
 
 INSERT INTO users (user_name,user_email,user_password) VALUES ('John Doe', 'johndoe@email.com', 'supersecretpassword');
 
+
+
 -- login to postgres db                 psql -U <username>
+-- list dbs                             \l
 -- connect to a specific database       \c <db-name>
 -- list tables                          \dt
