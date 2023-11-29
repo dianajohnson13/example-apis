@@ -15,7 +15,9 @@ const router = express.Router();
     // }
     // });
 
+
 router.post('/', async (req, res) => {
+    // Request body: { password: string, email: string, name: string }
   try {
     // hash password
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
