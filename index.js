@@ -4,7 +4,7 @@ import dotenv from 'dotenv';
 import { dirname,join } from 'path';
 import { fileURLToPath } from 'url';
 
-import usersRouter from './src/routes/usersRouter';
+import usersRouter from './src/routes/usersRouter.js';
 
 dotenv.config();
 
