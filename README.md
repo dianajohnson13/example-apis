@@ -16,7 +16,7 @@ For now, see db.js and database.sql
 
 ## Endpoints
 | Method | Endpoint  | Description |
-| ------------- | ------------- |:-------------:|
+| ------------- | ------------- |-------------|
 | POST | `/api/users`      | Registers a new user     |
 | POST | `/api/auth/login`      | Authenticates an existing user    |
 
