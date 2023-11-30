@@ -25,8 +25,35 @@ router.post('/login', async (req, res) => {
     res.cookie('refresh_token', tokens.refreshToken, {httpOnly: true});
     res.status(200).json(tokens);
   } catch (error) {
-    res.status(500).json({error});
+    res.status(500).json({error: error.message});
   }
 });
+
+// Uses refresh token to generate new token
+router.get('/refresh_token', (req, res) => {
+    try {
+      const refreshToken = req.cookies.refresh_token;
+      if (refreshToken === null) return res.status(401).json('Missing token');
+      // If refresh token is accurate, remake token
+      jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (error, user) => {
+        if (error) return res.status(403).json({error});
+        let tokens = makeTokens(user);
+        res.cookie('refresh_token', tokens.refreshToken, {httpOnly: true});
+        return res.json(tokens);
+      });
+    } catch (error) {
+      res.status(401).json({error: error.message});
+    }
+  });
+
+
+  router.delete('/refresh_token', (req, res) => {
+    try {
+      res.clearCookie('refresh_token');
+      return res.status(200).json({message:'Refresh token deleted.'});
+    } catch (error) {
+      res.status(401).json({error: error.message});
+    }
+  });
 
 export default router;

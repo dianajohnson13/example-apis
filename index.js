@@ -3,6 +3,8 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import { dirname,join } from 'path';
 import { fileURLToPath } from 'url';
+import cookieParser from 'cookie-parser';
+
 
 import usersRouter from './src/routes/usersRouter.js';
 import authRouter from './src/routes/authRouter.js';
@@ -17,6 +19,7 @@ const corsOptions = {credentials:true, origin: process.env.URL || '*'};
 
 app.use(cors(corsOptions));
 app.use(json());
+app.use(cookieParser());
 
 // routes
 app.use('/', express.static(join(__dirname, 'public')));
