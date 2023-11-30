@@ -14,6 +14,17 @@ Server runs on http://localhost:5000
 Coming soon... 
 For now, see db.js and database.sql
 
+### Environment Variables
+Add .env with the following environment variables:
+```
+# Database
+DB_PASSWORD=<password>
+
+# Authentication
+ACCESS_TOKEN_SECRET=<secret>
+REFRESH_TOKEN_SECRET=<secret>
+```
+
 ## Endpoints
 | Method | Endpoint  | Description |
 | ------------- | ------------- |-------------|
