@@ -1,0 +1,10 @@
+// Uses VS code extension REST Client
+
+POST http://localhost:5000/api/users
+Content-Type: application/json
+
+{
+    "name": "Bob",
+    "email": "bob@email.com",
+    "password": "supersecretpassword"
+}
