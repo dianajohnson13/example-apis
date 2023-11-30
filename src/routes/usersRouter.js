@@ -11,7 +11,7 @@ const router = express.Router();
     //     const users = await pool.query('SELECT * FROM users');
     //     res.json({users : users.rows});
     // } catch (error) {
-    //     res.status(500).json({error});
+    //     res.status(500).json({error: error.message});
     // }
     // });
 
@@ -33,7 +33,7 @@ router.post('/', async (req, res) => {
       email: newUser.user_email
     }});
   } catch (error) {
-    res.status(500).json({error});
+    res.status(500).json({error: error.message});
   }
 });
 
