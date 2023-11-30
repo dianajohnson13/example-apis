@@ -5,11 +5,6 @@ Description coming soon.
  ### Install dependencies
  ```npm install```
 
-### Run the server
-```npm run server```
-
-Server runs on http://localhost:5000
-
 ### Database Setup
 Coming soon... 
 For now, see db.js and database.sql
@@ -24,6 +19,11 @@ DB_PASSWORD=<password>
 ACCESS_TOKEN_SECRET=<secret>
 REFRESH_TOKEN_SECRET=<secret>
 ```
+
+### Run the server
+```npm run server```
+
+Server runs on http://localhost:5000
 
 ## Endpoints
 | Method | Endpoint  | Description |
