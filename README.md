@@ -32,6 +32,7 @@ Server runs on http://localhost:5000
 | POST | `/api/auth/login`      | Authenticates an existing user    |
 | GET | `/api/auth/refresh_token`      | Authenticates an existing user using a refresh token    |
 | DELETE | `/api/auth/refresh_token`      | Logs a user out by deleting their refresh token    |
+| GET | `/api/whoami`      | Returns authenticated user |
 
 
 ## Stack

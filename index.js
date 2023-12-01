@@ -5,9 +5,9 @@ import { dirname,join } from 'path';
 import { fileURLToPath } from 'url';
 import cookieParser from 'cookie-parser';
 
-
 import usersRouter from './src/routes/usersRouter.js';
 import authRouter from './src/routes/authRouter.js';
+import whoAmIRouter from './src/routes/whoAmIRouter.js';
 
 dotenv.config();
 
@@ -26,6 +26,7 @@ app.use('/', express.static(join(__dirname, 'public')));
 
 app.use('/api/users', usersRouter);
 app.use('/api/auth', authRouter);
+app.use('/api/whoami', whoAmIRouter);
 
 const PORT = process.env.PORT || 5000;
 
