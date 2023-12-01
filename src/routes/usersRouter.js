@@ -5,17 +5,6 @@ import bcrypt from 'bcrypt';
 // Routes under '/api/users'
 const router = express.Router();
 
-// TO-DO include auth check
-    // router.get('/', async (req, res) => {
-    // try {
-    //     const users = await pool.query('SELECT * FROM users');
-    //     res.json({users : users.rows});
-    // } catch (error) {
-    //     res.status(500).json({error: error.message});
-    // }
-    // });
-
-
 router.post('/', async (req, res) => {
     // Request body: { password: string, email: string, name: string }
   try {
