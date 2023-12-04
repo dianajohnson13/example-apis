@@ -9,16 +9,8 @@ CREATE TABLE users (
     user_password TEXT NOT NULL
 );
 
-SELECT * FROM users;
-
-
--- Don't actually insert them like this. The user's password won't work with auth b/c encryption
-    -- INSERT INTO users (user_name,user_email,user_password) 
-    --       VALUES ('John Doe', 'johndoe@email.com', 'supersecretpassword');
-
-
-
--- login to postgres db                 psql -U <username>
--- list dbs                             \l
--- connect to a specific database       \c <db-name>
--- list tables                          \dt
+CREATE TABLE developers (
+    client_id uuid PRIMARY KEY DEFAULT uuid_generate_v4(),
+    user_id TEXT NOT NULL,
+    api_key TEXT NOT NULL UNIQUE
+);
