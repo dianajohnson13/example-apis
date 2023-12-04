@@ -2,14 +2,14 @@
 Description coming soon.
 
 ## Local Setup
- ### Install dependencies
+ ### 1. Install dependencies
  ```npm install```
 
-### Database Setup
+### 2. Set up the Database
 Coming soon... 
 For now, see db.js and database.sql
 
-### Environment Variables
+### 3. Define Environment Variables
 Add .env with the following environment variables:
 ```
 # Database
@@ -20,7 +20,7 @@ ACCESS_TOKEN_SECRET=<secret>
 REFRESH_TOKEN_SECRET=<secret>
 ```
 
-### Run the server
+### 4. Run the server
 ```npm run server```
 
 Server runs on http://localhost:5000
