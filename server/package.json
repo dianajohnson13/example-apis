@@ -1,0 +1,31 @@
+{
+  "name": "example-apis",
+  "version": "1.0.0",
+  "description": "some exmple apis",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "npm index.js",
+    "server": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "engines": {
+    "node": "18.16.1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.2",
+    "nodemon": "^3.0.1",
+    "path": "^0.12.7",
+    "pg": "^8.11.3",
+    "pool": "^0.4.1",
+    "url": "^0.11.1",
+    "uuid": "^9.0.1"
+  }
+}
