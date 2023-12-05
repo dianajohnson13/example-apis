@@ -8,7 +8,7 @@ import { makeTokens } from '../utils/auth.js';
 // Routes under '/api/auth'
 const router = express.Router();
 
-// login as user through client
+// login as user with password
 router.post('/login', async (req, res) => {
   try {
     const { email, password } = req.body; // { email: string, password: string }
