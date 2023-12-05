@@ -1,4 +1,4 @@
-# Example APIs Client
+# Example APIs Server
 
 _Updated README coming soon_
 
