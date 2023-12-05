@@ -23,7 +23,10 @@ REFRESH_TOKEN_SECRET=<secret>
 ```
 
 ### 4. Run the server
-```npm run server```
+```npm run start``
+or
+```npm run dev``` to run with [nodemon](https://www.npmjs.com/package/nodemon)
+
 
 Server runs on http://localhost:5000
 
