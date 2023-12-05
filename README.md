@@ -1,9 +1,11 @@
 # Example APIs
 Description coming soon.
 
-## Local Setup
- ### 1. Install dependencies
- ```npm install```
+## Local Server Setup
+In the `\server` directory:
+
+### 1. Install dependencies
+```npm install```
 
 ### 2. Set up the Database
 Coming soon... 
@@ -24,6 +26,17 @@ REFRESH_TOKEN_SECRET=<secret>
 ```npm run server```
 
 Server runs on http://localhost:5000
+
+## Local Client Setup
+In the `\client` directory:
+
+### 1. Install dependencies
+```npm install```
+
+### 2. Run the client
+```npm run client```
+
+Client runs on http://localhost:3000
 
 ## Endpoints
 ### Public Endpoints

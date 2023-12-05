@@ -1,3 +1,0 @@
-# Auth: User Password Authentication
-
-
