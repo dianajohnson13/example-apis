@@ -41,6 +41,8 @@ In the `\client` directory:
 
 Client runs on http://localhost:3000
 
+**Note**: In development, the client uses the local server as a proxy. The server should be started up on port :5000 before starting up the client on :3000.
+
 ## Endpoints
 ### Public Endpoints
 To view all public API endpoints, visit [API Reference Index](https://github.com/dianajohnson13/example-apis/wiki/API-Reference-Index) page in this project's Wiki.
