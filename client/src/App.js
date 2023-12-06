@@ -8,19 +8,14 @@ import Home from './pages/Home';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
 
+import Header from './components/Header'
+
 
 export default function App() {
   return (
   <Router>
       <>
-        <header>
-          <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
-            <div class="container">
-              <a href="#" class="navbar-brand">Taskerly</a>
-              
-            </div>
-          </nav>
-        </header>
+        <Header />
         <main className="container">
           <Routes>
               <Route path="/" element={<Home />}/>
