@@ -63,18 +63,18 @@ export default function Login() {
             <div className="required">
               <label htmlFor="email"><b>Email</b></label>
               <br/>
-              <input class="form-control" type="text" name="email" value={email || ""} required onChange={handleTextInputChange} />
+              <input className="form-control" type="text" name="email" value={email || ""} required onChange={handleTextInputChange} />
             </div>
 
             <div className="required">
               <label htmlFor="password"><b>Password</b></label>
               <br/>
-              <input class="form-control" type="password" name="password" value={password || ""} required onChange={handleTextInputChange} />
+              <input className="form-control" type="password" name="password" value={password || ""} required onChange={handleTextInputChange} />
             </div>
 
-            <div class="col-12">
+            <div className="col-12">
               <button
-                class="btn btn-primary"
+                className="btn btn-primary"
                 type="submit"
                 disabled={loading || !email.length || !password.length}
               >

@@ -68,24 +68,24 @@ export default function Signup() {
             <div className="required">
               <label htmlFor="name"><b>Name</b></label>
               <br/>
-              <input class="form-control" type="text" name="name" value={name || ""} required onChange={handleTextInputChange}/>
+              <input className="form-control" type="text" name="name" value={name || ""} required onChange={handleTextInputChange}/>
             </div>
 
             <div className="required">
               <label htmlFor="email"><b>Email</b></label>
               <br/>
-              <input class="form-control" type="text" name="email" value={email || ""} required onChange={handleTextInputChange} />
+              <input className="form-control" type="text" name="email" value={email || ""} required onChange={handleTextInputChange} />
             </div>
 
             <div className="required">
               <label htmlFor="password"><b>Password</b></label>
               <br/>
-              <input class="form-control" type="password" name="password" value={password || ""} required onChange={handleTextInputChange} />
+              <input className="form-control" type="password" name="password" value={password || ""} required onChange={handleTextInputChange} />
             </div>
 
             <div class="col-12">
               <button
-                class="btn btn-primary"
+                className="btn btn-primary"
                 type="submit"
                 disabled={loading || !name.length || !email.length || !password.length}
               >
