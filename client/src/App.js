@@ -11,21 +11,22 @@ import Signup from './pages/Signup';
 export default function App() {
   return (
   <Router>
-      <div className="App">
+      <>
         <header>
-          {/* logo placeholder */}
-          <div>
-            <strong>Example APIs</strong>
-          </div>
+          <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+            <div class="container">
+              <a href="#" class="navbar-brand">Taskerly</a>
+              
+            </div>
+          </nav>
         </header>
-        <main>
+        <main className="container">
           <Routes>
               <Route path="/" element={<Home />}/>
               <Route path="/signup" element={<Signup />} />
-              
           </Routes>
         </main>
-      </div>
+      </>
    </Router>
   );
 }
