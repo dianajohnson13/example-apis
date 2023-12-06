@@ -1,24 +1,23 @@
 import { useState } from 'react';
 
-const signup = async (newUser) => {
-    const resp = await fetch("/api/users", {
-      method: 'POST',
-      headers: {
-        "content-type": "application/json"
-      },
-      body: JSON.stringify(newUser)
-    });
+const login = async (user) => {
+  const resp = await fetch("/api/auth/login", {
+    method: 'POST',
+    headers: {
+      "content-type": "application/json"
+    },
+    body: JSON.stringify(user)
+  });
 
-    if (resp.ok) {
-      return resp.json();
-    } else {
-      console.log(resp)
-      throw new Error('something went wrong');
-    }
+  if (resp.ok) {
+    return resp.json();
+  } else {
+    console.log(resp)
+    throw new Error('something went wrong');
+  }
 }
 
-export default function Signup() {
-  const [name, setName] = useState("");
+export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -28,9 +27,6 @@ export default function Signup() {
     const { value, name } = event.target;
 
     switch (name) {
-      case "name":
-        setName(value); 
-        break;
       case "email":
         setEmail(value);
         break;
@@ -43,12 +39,11 @@ export default function Signup() {
     event.preventDefault();
 
     setLoading(true);
-    signup({
-      name,
+    login({
       email,
       password
     }).then(res => {
-      // accept and do something
+      // accept, store tokens, and reroute to appropriate page
       console.log(res)
       setLoading(false);
     })
@@ -62,14 +57,8 @@ export default function Signup() {
   return (
     <form onSubmit={handleSubmit}>
         <div>
-            <h1>Sign Up</h1>
-            <p>Please complete this form to create an account.</p>
-
-            <div className="required">
-              <label htmlFor="name"><b>Name</b></label>
-              <br/>
-              <input class="form-control" type="text" name="name" value={name || ""} required onChange={handleTextInputChange}/>
-            </div>
+            <h1>Log In</h1>
+            <p>Please complete this form to log in to your account.</p>
 
             <div className="required">
               <label htmlFor="email"><b>Email</b></label>
@@ -87,14 +76,14 @@ export default function Signup() {
               <button
                 class="btn btn-primary"
                 type="submit"
-                disabled={loading || !name.length || !email.length || !password.length}
+                disabled={loading || !email.length || !password.length}
               >
-                {loading ? "Loading..." : "Sign Up"}
+                {loading ? "Loading..." : "Log In"}
               </button>
             </div>
             {/* temp error position */}
             {error && <p>{error}</p>} 
-            {/* Already have an account? login */}
+            {/* no account? sign up */}
         </div>
     </form>
   );

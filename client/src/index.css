@@ -1,0 +1,4 @@
+.required label:after {
+    content: " *" / ""; /* The  '/ ""' hides the * from screen readers */
+    color: red;
+}
