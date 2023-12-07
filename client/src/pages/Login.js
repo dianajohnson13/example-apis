@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { storeTokens } from '../utils/Auth';
+import { storeAuth } from '../utils/Auth';
 
 const login = async (user) => {
   const resp = await fetch("/api/auth/login", {
@@ -11,7 +11,10 @@ const login = async (user) => {
   });
 
   if (resp.ok) {
-    return resp.json();
+    return resp.json().then(data => {
+      storeAuth(data);
+      return;
+    });
   } else {
     return resp.json().then(data => {
       throw new Error(data.error || "Something went wrong");
@@ -52,11 +55,9 @@ export default function Login() {
     login({
       email,
       password
-    }).then(data => {
+    }).then(() => {
       clearState();
-      storeTokens(data);
       // reroute to appropriate page
-
     })
     .catch(error => {
       console.log(error)

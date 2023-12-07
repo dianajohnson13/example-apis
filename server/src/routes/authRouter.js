@@ -24,7 +24,7 @@ router.post('/login', async (req, res) => {
     // IF PASSWORD VALID, RETURN JWT 
     const tokens =  makeTokens(users.rows[0]);
     res.cookie('refresh_token', tokens.refreshToken, {httpOnly: true});
-    res.status(200).json(tokens);
+    res.status(200).json({...tokens, userId: users.rows[0].user_id});
   } catch (error) {
     res.status(500).json({error: error.message});
   }
@@ -59,7 +59,7 @@ router.post('/token', async (req, res) => {
 
 
 // Uses refresh token to generate new token
-router.get('/refresh_token', (req, res) => {
+  router.get('/refresh_token', (req, res) => {
     try {
       const refreshToken = req.cookies.refresh_token;
       if (refreshToken === null) return res.status(401).json('Missing token');

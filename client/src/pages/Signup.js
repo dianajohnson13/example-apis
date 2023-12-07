@@ -12,8 +12,9 @@ const signup = async (newUser) => {
     if (resp.ok) {
       return resp.json();
     } else {
-      console.log(resp)
-      throw new Error('something went wrong');
+      return resp.json().then(data => {
+        throw new Error(data.error || "Something went wrong");
+      });
     }
 }
 
@@ -47,10 +48,9 @@ export default function Signup() {
       name,
       email,
       password
-    }).then(res => {
-      // accept and do something
-      console.log(res)
+    }).then(() => {
       setLoading(false);
+      // redirect to login
     })
     .catch(error => {
       console.log(error)
