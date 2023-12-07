@@ -1,22 +1,5 @@
 import { useState } from 'react';
-
-const signup = async (newUser) => {
-    const resp = await fetch("/api/users", {
-      method: 'POST',
-      headers: {
-        "content-type": "application/json"
-      },
-      body: JSON.stringify(newUser)
-    });
-
-    if (resp.ok) {
-      return resp.json();
-    } else {
-      return resp.json().then(data => {
-        throw new Error(data.error || "Something went wrong");
-      });
-    }
-}
+import { signup } from '../api/Users';
 
 export default function Signup() {
   const [name, setName] = useState("");

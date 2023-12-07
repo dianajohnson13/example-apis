@@ -1,26 +1,5 @@
 import { useState } from 'react';
-import { storeAuth } from '../utils/Auth';
-
-const login = async (user) => {
-  const resp = await fetch("/api/auth/login", {
-    method: 'POST',
-    headers: {
-      "content-type": "application/json"
-    },
-    body: JSON.stringify(user)
-  });
-
-  if (resp.ok) {
-    return resp.json().then(data => {
-      storeAuth(data);
-      return;
-    });
-  } else {
-    return resp.json().then(data => {
-      throw new Error(data.error || "Something went wrong");
-    });
-  }
-}
+import { login } from '../api/Users';
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -60,7 +39,6 @@ export default function Login() {
       // reroute to appropriate page
     })
     .catch(error => {
-      console.log(error)
       setPassword("");
       setError(error.message)
       setLoading(false);
