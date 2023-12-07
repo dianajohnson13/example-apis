@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { storeTokens } from '../utils/Auth';
 
 const login = async (user) => {
   const resp = await fetch("/api/auth/login", {
@@ -12,8 +13,9 @@ const login = async (user) => {
   if (resp.ok) {
     return resp.json();
   } else {
-    console.log(resp)
-    throw new Error('something went wrong');
+    return resp.json().then(data => {
+      throw new Error(data.error || "Something went wrong");
+    });
   }
 }
 
@@ -22,6 +24,13 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState();
+
+  const clearState = () => {
+    setEmail("");
+    setPassword("");
+    setError("")
+    setLoading(false);
+  }
     
   const handleTextInputChange = (event) => {
     const { value, name } = event.target;
@@ -35,6 +44,7 @@ export default function Login() {
     }
   }
 
+
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -42,13 +52,15 @@ export default function Login() {
     login({
       email,
       password
-    }).then(res => {
-      // accept, store tokens, and reroute to appropriate page
-      console.log(res)
-      setLoading(false);
+    }).then(data => {
+      clearState();
+      storeTokens(data);
+      // reroute to appropriate page
+
     })
     .catch(error => {
       console.log(error)
+      setPassword("");
       setError(error.message)
       setLoading(false);
     });
