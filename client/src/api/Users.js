@@ -32,7 +32,7 @@ export const login = async (user) => {
   if (resp.ok) {
     return resp.json().then(data => {
       storeAuth(data);
-      return { name: data.user.name };
+      return data.user;
     });
   } else {
     return resp.json().then(data => {

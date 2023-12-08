@@ -5,13 +5,13 @@ export const storeAuth = (data) => {
 }
 
 export const getUserId = () => {
-    localStorage.getItem('myId');
+    return localStorage.getItem('myId');
 }
 
 export const getAccessToken = () => {
-    localStorage.getItem('access');
+    return localStorage.getItem('access');
 }
 
 export const getRefreshToken = () => {
-    localStorage.getItem('refresh');
+    return localStorage.getItem('refresh');
 }

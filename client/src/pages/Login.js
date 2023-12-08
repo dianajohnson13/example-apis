@@ -37,9 +37,9 @@ export default function Login() {
     login({
       email,
       password
-    }).then(() => {
+    }).then((user) => {
       clearState();
-      navigate("/");
+      navigate(`/home/${user.userId}`);
     })
     .catch(error => {
       setPassword("");
