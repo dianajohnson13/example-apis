@@ -1,11 +1,11 @@
 export const storeAuth = (data) => {
     localStorage.setItem('access', data.accessToken);
     localStorage.setItem('refresh', data.refreshToken);
-    localStorage.setItem('me', data.userId);
+    localStorage.setItem('myId', data.user.userId);
 }
 
 export const getUserId = () => {
-    localStorage.getItem('me');
+    localStorage.getItem('myId');
 }
 
 export const getAccessToken = () => {

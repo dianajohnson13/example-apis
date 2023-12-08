@@ -16,15 +16,16 @@ router.post('/login', async (req, res) => {
 
     // CHECK IF USER EXISTS
     if (users.rows.length === 0) return res.status(401).json({error: "Email not found"});
-    
+    const user = users.rows[0];
+
     // CHECK PASSWORD
-    const isValidPassword = await bcrypt.compare(password, users.rows[0].user_password);
+    const isValidPassword = await bcrypt.compare(password, user.user_password);
     if (!isValidPassword) return res.status(401).json({error: "Invalid password"});
 
     // IF PASSWORD VALID, RETURN JWT 
-    const tokens =  makeTokens(users.rows[0]);
+    const tokens =  makeTokens(user);
     res.cookie('refresh_token', tokens.refreshToken, {httpOnly: true});
-    res.status(200).json({...tokens, userId: users.rows[0].user_id});
+    res.status(200).json({...tokens, user: {userId: user.user_id, name: user.user_name}});
   } catch (error) {
     res.status(500).json({error: error.message});
   }
