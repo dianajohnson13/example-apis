@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { signup } from '../api/Users';
+import { useNavigate } from "react-router-dom";
+
 
 export default function Signup() {
   const [name, setName] = useState("");
@@ -7,6 +9,8 @@ export default function Signup() {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState();
+
+  const navigate = useNavigate();
     
   const handleTextInputChange = (event) => {
     const { value, name } = event.target;
@@ -33,7 +37,7 @@ export default function Signup() {
       password
     }).then(() => {
       setLoading(false);
-      // redirect to login
+      navigate("/login");
     })
     .catch(error => {
       console.log(error)
@@ -66,7 +70,7 @@ export default function Signup() {
               <input className="form-control" type="password" name="password" value={password || ""} required onChange={handleTextInputChange} />
             </div>
 
-            <div class="col-12">
+            <div className="col-12">
               <button
                 className="btn btn-primary"
                 type="submit"

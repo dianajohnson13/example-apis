@@ -1,11 +1,14 @@
 import { useState } from 'react';
 import { login } from '../api/Users';
+import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState();
+
+  const navigate = useNavigate();
 
   const clearState = () => {
     setEmail("");
@@ -36,7 +39,7 @@ export default function Login() {
       password
     }).then(() => {
       clearState();
-      // reroute to appropriate page
+      navigate("/");
     })
     .catch(error => {
       setPassword("");
