@@ -20,7 +20,7 @@ export default function App() {
 
   return (
   <Router>
-      <UserFetcher>
+      <UserFetcher userId={userId}>
         <Header />
         <main className="container">
           <Routes>

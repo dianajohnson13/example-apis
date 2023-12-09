@@ -1,5 +1,19 @@
 import { getAccessToken, storeAuth } from '../utils/Auth';
 
+export const checkAuth = async () => {
+  const resp = await fetch("/api/auth/refresh_token");
+    if (resp.ok) {
+        return resp.json()
+          .then(data => {
+            storeAuth(data);
+            return;
+          })
+      } else {
+        storeAuth({})
+        throw new Error(resp.status)
+      }
+}
+
 export const signup = async (newUser) => {
     const resp = await fetch("/api/users", {
       method: 'POST',
@@ -50,7 +64,6 @@ export const getUserDetails = async (user) => {
       "authorization": `Bearer ${getAccessToken()}`
     }
   });
-
   if (resp.ok) {
     return resp.json().then(data => {
       return {
@@ -58,6 +71,10 @@ export const getUserDetails = async (user) => {
         email: data.user.email,
         clientId: data.user.clientId
       };
+    });
+  } else if (resp.status === 403) {
+    return checkAuth().then(() => {
+      getUserDetails(user);
     });
   } else {
     return resp.json().then(data => {
@@ -80,8 +97,12 @@ export const generateAPIKey = async (user) => {
     return resp.json().then(data => {
       return {
         clientId: data.clientId,
-        apiKey: data.apiKey
+        apiKey: data.apiKey,
       };
+    });
+  } else if (resp.unauthorized) {
+    return checkAuth().then(() => {
+      generateAPIKey(user);
     });
   } else {
     return resp.json().then(data => {
@@ -89,3 +110,6 @@ export const generateAPIKey = async (user) => {
     });
   }
 }
+
+
+    
