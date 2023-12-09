@@ -55,7 +55,32 @@ export const getUserDetails = async (user) => {
     return resp.json().then(data => {
       return {
         name: data.user.name,
-        email: data.user.email
+        email: data.user.email,
+        clientId: data.user.clientId
+      };
+    });
+  } else {
+    return resp.json().then(data => {
+      throw new Error(data.error || "Something went wrong");
+    });
+  }
+}
+
+export const generateAPIKey = async (user) => {
+  const resp = await fetch("/api/developers", {
+    method: 'POST',
+    headers: {
+      "content-type": "application/json",
+      "accept": "application/json",
+      "authorization": `Bearer ${getAccessToken()}`
+    }
+  });
+
+  if (resp.ok) {
+    return resp.json().then(data => {
+      return {
+        clientId: data.clientId,
+        apiKey: data.apiKey
       };
     });
   } else {
