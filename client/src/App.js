@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import {
   BrowserRouter as Router,
   Routes,
@@ -15,13 +16,25 @@ import Header from './components/Header';
 import { getUserId } from "./utils/Auth";
 import UserFetcher from "./containers/UserFetcher";
 
+export const authUpdate = new Event("authUpdate");
+
 export default function App() {
-  const userId = getUserId();
+  const [userId, setUserId] = useState(getUserId());
+
+  useEffect(() => {
+    const checkStorageForUser = () => {
+        setUserId(getUserId())
+    }
+    checkStorageForUser();
+
+    window.addEventListener('authUpdate', checkStorageForUser);
+
+    return () => window.removeEventListener('authUpdate', checkStorageForUser)
+  }, [])
 
   return (
   <Router>
-      
-        <Header />
+        <Header isLoggedIn={userId} />
         <main className="container">
           <Routes>
               <Route path="/" element={!userId ? <Home /> : <Navigate to={`/home/${userId}`} replace={true}/>}/>
@@ -30,11 +43,11 @@ export default function App() {
                 <>
                   <Route
                     path="/home/:id"
-                    element={<UserFetcher><Dashboard /></UserFetcher>}
+                    element={<UserFetcher userId={userId}><Dashboard /></UserFetcher>}
                   />
                   <Route
                     path="/settings"
-                    element={<UserFetcher><Settings /> </UserFetcher>}
+                    element={<UserFetcher userId={userId}><Settings /> </UserFetcher>}
                   />
                 </>
           </Routes>

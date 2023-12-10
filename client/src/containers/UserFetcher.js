@@ -2,16 +2,14 @@
 import { createContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getUserDetails } from '../api/Users';
-import { getUserId } from '../utils/Auth';
 
 export const UserContext = createContext();
 
-export default function UserFetcher({ children }) {
+export default function UserFetcher({ children, userId }) {
     const [user, setUser] = useState({});
     const navigate = useNavigate();
 
     useEffect(() => {
-        const checkUser = () => {
             getUserDetails()
                 .then((user) => {
                    setUser(user);
@@ -20,23 +18,7 @@ export default function UserFetcher({ children }) {
                     console.error(error)
                     navigate("/login");
                 });
-        }
-
-        const checkStorageForUser = () => {
-            const idInStorage = getUserId();
-            if (!idInStorage) {
-                navigate("/login");
-            } else if (!user || user.userId !== idInStorage) {
-                checkUser();
-            }
-        }
-
-        checkStorageForUser();
-
-        window.addEventListener('storage', checkStorageForUser);
-
-        return () => window.removeEventListener('storage', checkStorageForUser())
-      }, [])
+      }, [userId])
 
 
     return (

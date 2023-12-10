@@ -40,3 +40,22 @@ export const checkAuth = async () => {
       });
     }
   }
+
+  export const logout = async () => {
+    clearAuth();
+
+    const resp = await fetch("/api/auth/refresh_token", {
+      method: 'DELETE',
+      headers: {
+        "accept": "application/json"
+      }
+    });
+
+    if (resp.ok) {
+      return;
+    } else {
+      return resp.json().then(data => {
+        throw new Error(data.error || "Something went wrong");
+      });
+    }
+  }

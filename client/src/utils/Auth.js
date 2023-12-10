@@ -1,7 +1,10 @@
+import { authUpdate } from "../App";
+
 export const storeAuth = (data) => {
     if (data.accessToken) localStorage.setItem('access', data.accessToken);
     if (data.refreshToken) localStorage.setItem('refresh', data.refreshToken);
     if (data.userId) localStorage.setItem('myId', data.userId);
+    window.dispatchEvent(authUpdate);
 }
 
 export const clearAuth = () => {

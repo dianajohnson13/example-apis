@@ -1,26 +1,31 @@
-export default function Header() {
+import { Nav, Navbar, Container } from "react-bootstrap";
+import { logout } from "../api/Auth";
+
+export default function Header({isLoggedIn}) {
+    const handleLogout = () => {
+      logout()
+        .catch(error => {
+          console.log(error)
+        })
+    }
+
     return (
-      <header>
-        <nav className="navbar navbar-expand-lg bg-dark navbar-dark">
-          <div className="container">
-            <a href="/" className="navbar-brand">Taskerly</a>
-            <button
-              className="navbar-toggler"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#navmenu"
-            >
-              <span className="navbar-toggler-icon"></span>
-            </button>
-            <div className="collapse navbar-collapse" id="navmenu">
-              <ul className="navbar-nav ms-auto">
-                <li className="nav-item">
-                  <a href="/settings" className="nav-link">Settings</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </nav>
-      </header>
+      <Navbar collapseOnSelect expand="lg" className="bg-dark navbar navbar-expand navbar-dark">
+          <Container>
+            <Navbar.Brand href="/">Taskerly</Navbar.Brand>
+            <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+            <Navbar.Collapse id="responsive-navbar-nav">
+              <Nav className="navbar-nav ms-auto">
+                {isLoggedIn && (
+                  <>
+                    <Nav.Link href="/settings">Settings</Nav.Link>
+                    <Nav.Link href="/login" onClick={handleLogout}>Logout</Nav.Link>
+                  </>
+
+                )}
+              </Nav>
+            </Navbar.Collapse>
+          </Container>
+        </Navbar>
     );
 }
