@@ -20,22 +20,25 @@ export default function App() {
 
   return (
   <Router>
-      <UserFetcher userId={userId}>
+      
         <Header />
         <main className="container">
           <Routes>
               <Route path="/" element={!userId ? <Home /> : <Navigate to={`/home/${userId}`} replace={true}/>}/>
               <Route path="/signup" element={<Signup />} />
               <Route path="/login" element={<Login />} />
-              {userId && (
                 <>
-                <Route path="/home/:id" element={<Dashboard />} />
-                <Route path="/settings" element={<Settings />} />
+                  <Route
+                    path="/home/:id"
+                    element={<UserFetcher><Dashboard /></UserFetcher>}
+                  />
+                  <Route
+                    path="/settings"
+                    element={<UserFetcher><Settings /> </UserFetcher>}
+                  />
                 </>
-              )}
           </Routes>
         </main>
-      </UserFetcher>
    </Router>
   );
 }

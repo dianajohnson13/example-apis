@@ -1,4 +1,4 @@
-import { getAccessToken, storeAuth } from '../utils/Auth';
+import { getAccessToken, storeAuth, clearAuth } from '../utils/Auth';
 
 export const checkAuth = async () => {
   const resp = await fetch("/api/auth/refresh_token");
@@ -9,7 +9,7 @@ export const checkAuth = async () => {
             return;
           })
       } else {
-        storeAuth({})
+        clearAuth();
         throw new Error(resp.status)
       }
 }
@@ -45,7 +45,11 @@ export const login = async (user) => {
 
   if (resp.ok) {
     return resp.json().then(data => {
-      storeAuth(data);
+      storeAuth({
+        accessToken: data.accessToken,
+        refreshToken: data.refreshToken,
+        userId: data.user.userId
+      });
       return data.user;
     });
   } else {
@@ -55,7 +59,7 @@ export const login = async (user) => {
   }
 }
 
-export const getUserDetails = async (user) => {
+export const getUserDetails = async (retries = 0) => {
   const resp = await fetch("/api/whoami", {
     method: 'GET',
     headers: {
@@ -65,8 +69,11 @@ export const getUserDetails = async (user) => {
     }
   });
   if (resp.ok) {
+
     return resp.json().then(data => {
+
       return {
+        userId: data.user.userId,
         name: data.user.name,
         email: data.user.email,
         clientId: data.user.clientId
@@ -74,7 +81,10 @@ export const getUserDetails = async (user) => {
     });
   } else if (resp.status === 403) {
     return checkAuth().then(() => {
-      getUserDetails(user);
+      if (retries === 0) {
+          return getUserDetails(1)
+      }
+
     });
   } else {
     return resp.json().then(data => {
