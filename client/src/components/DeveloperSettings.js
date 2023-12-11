@@ -1,13 +1,15 @@
 import { useContext, useState } from "react";
 import { UserContext } from "../containers/UserFetcher";
-import { generateAPIKey } from "../api/Users";
+import { generateAPIKey, deleteAPIKey } from "../api/Developers";
 
 import {Button, Modal, Form } from 'react-bootstrap';
 
 export default function DeveloperSettings() {
     const { user, setUser } = useContext(UserContext);
-    const [apiKey, setAPIKey] = useState();
+    const [apiKey, setAPIKey] = useState(); // only stores new API key
     const [modalOpen, setModalOpen] = useState(false);
+
+    const apiKeyExists = user && user.clientId; // it was preveiously created
 
     const onGenerate = () => {
         generateAPIKey()
@@ -15,6 +17,17 @@ export default function DeveloperSettings() {
                 setUser({ ...user, clientId });
                 setAPIKey(apiKey);
                 setModalOpen(true);
+            })
+            .catch(error => {
+                // To-Do: displayError
+                console.log(error);
+            })
+    };
+
+    const onErase = () => {
+        deleteAPIKey(user.clientId)
+            .then(() => {
+                setUser({ ...user, clientId: undefined });
             })
             .catch(error => {
                 // To-Do: displayError
@@ -50,10 +63,9 @@ export default function DeveloperSettings() {
                             <div className="custom-control custom-switch">
                                 <Button
                                     variant="secondary"
-                                    disabled={user && user.clientId}
-                                    onClick={onGenerate}
+                                    onClick={!apiKeyExists ? onGenerate : onErase}
                                 >
-                                    Generate
+                                    {apiKeyExists ? "Erase" : "Generate"}
                                 </Button>
                             </div>
                         </div>
@@ -77,17 +89,17 @@ function ApiKeyModal({apiKey, clientId, handleClose, show = true}) {
         const id = event.target.id;
         if (id === "copy-apiKey") {
             navigator.clipboard.writeText(apiKey);
-            alert("API Key copied!");
+            // alert("API Key copied!");
         } else if (id === "copy-clientId") {
             navigator.clipboard.writeText(clientId);
-            alert("ClientId copied!");
+            // alert("ClientId copied!");
         }
     };
 
     return (
 
-        <Modal show={show} onHide={handleClose} >
-          <Modal.Header closeButton>
+        <Modal show={show} >
+          <Modal.Header >
             <Modal.Title>API Key Generated</Modal.Title>
           </Modal.Header>
   

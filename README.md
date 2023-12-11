@@ -4,7 +4,7 @@ Description coming soon.
 ## Local Server Setup
 In the `\server` directory:
 
-### 1. Install dependencies
+### 1. Install Dependencies
 ```npm install```
 
 ### 2. Set up the Database

@@ -72,7 +72,7 @@ router.post('/token', async (req, res) => {
         return res.json(tokens);
       });
     } catch (error) {
-      res.status(401).json({error: error.message});
+      res.status(500).json({error: error.message});
     }
   });
 
@@ -82,7 +82,7 @@ router.post('/token', async (req, res) => {
       res.clearCookie('refresh_token');
       return res.status(200).json({message:'Refresh token deleted.'});
     } catch (error) {
-      res.status(401).json({error: error.message});
+      res.status(500).json({error: error.message});
     }
   });
 
