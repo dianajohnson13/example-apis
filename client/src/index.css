@@ -2,3 +2,13 @@
     content: " *" / ""; /* The  '/ ""' hides the * from screen readers */
     color: red;
 }
+
+.auth-form {
+    max-width: 480px;
+    margin: auto;
+}
+
+.auth-form-footer {
+    display: flex;
+    justify-content: end;
+}

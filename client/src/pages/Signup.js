@@ -47,18 +47,19 @@ export default function Signup() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <div>
+    <form className='mt-5  py-4 px-5 shadow auth-form' onSubmit={handleSubmit}>
         <div>
             <h1>Sign Up</h1>
-            <p>Please complete this form to create an account.</p>
+            <p>To get started, create your account</p>
 
-            <div className="required">
+            <div className="required mb-2">
               <label htmlFor="name"><b>Name</b></label>
               <br/>
               <input className="form-control" type="text" name="name" value={name || ""} required onChange={handleTextInputChange}/>
             </div>
 
-            <div className="required">
+            <div className="required mb-2">
               <label htmlFor="email"><b>Email</b></label>
               <br/>
               <input className="form-control" type="text" name="email" value={email || ""} required onChange={handleTextInputChange} />
@@ -70,9 +71,9 @@ export default function Signup() {
               <input className="form-control" type="password" name="password" value={password || ""} required onChange={handleTextInputChange} />
             </div>
 
-            <div className="col-12">
+            <div  className="auth-form-footer">
               <button
-                className="btn btn-primary"
+                className="btn btn-primary mt-4"
                 type="submit"
                 disabled={loading || !name.length || !email.length || !password.length}
               >
@@ -81,8 +82,9 @@ export default function Signup() {
             </div>
             {/* temp error position */}
             {error && <p>{error}</p>} 
-            {/* Already have an account? login */}
+            <p className='mt-2'>Already have an account? <a href="/login">Log In</a></p>
         </div>
     </form>
+    </div>
   );
 }

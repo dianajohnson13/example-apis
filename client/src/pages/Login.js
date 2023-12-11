@@ -1,4 +1,5 @@
 import { useState } from 'react';
+
 import { login } from '../api/Auth';
 import { useNavigate } from 'react-router-dom';
 
@@ -49,36 +50,41 @@ export default function Login() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-        <div>
-            <h1>Log In</h1>
-            <p>Please complete this form to log in to your account.</p>
+    <div>
+      <form className='mt-5 py-4 px-5 shadow auth-form' onSubmit={handleSubmit}>
+              <h1>Log In</h1>
+              <p>To get started, please log in</p>
 
-            <div className="required">
-              <label htmlFor="email"><b>Email</b></label>
-              <br/>
-              <input className="form-control" type="text" name="email" value={email || ""} required onChange={handleTextInputChange} />
-            </div>
+              <div className="required mb-2">
+                <label htmlFor="email"><b>Email</b></label>
+                <br/>
+                <input className="form-control" type="text" name="email" value={email || ""} required onChange={handleTextInputChange} />
+              </div>
 
-            <div className="required">
-              <label htmlFor="password"><b>Password</b></label>
-              <br/>
-              <input className="form-control" type="password" name="password" value={password || ""} required onChange={handleTextInputChange} />
+              <div className="required">
+                <label htmlFor="password"><b>Password</b></label>
+                <br/>
+                <input className="form-control" type="password" name="password" value={password || ""} required onChange={handleTextInputChange} />
+              </div>
+              <div className="auth-form-footer">
+                  <button
+                    className="btn btn-primary mt-4"
+                    type="submit"
+                    disabled={loading || !email.length || !password.length}
+                  >
+                    {loading ? "Loading..." : "Log In"}
+                  </button>
             </div>
-
-            <div className="col-12">
-              <button
-                className="btn btn-primary"
-                type="submit"
-                disabled={loading || !email.length || !password.length}
-              >
-                {loading ? "Loading..." : "Log In"}
-              </button>
-            </div>
-            {/* temp error position */}
-            {error && <p>{error}</p>} 
-            {/* no account? sign up */}
-        </div>
-    </form>
+              {/* temp error position */}
+              {error && <p>{error}</p>} 
+              <p className='mt-2'>Don't have an account? <a href="/signup">Sign Up</a></p>
+      </form>
+    </div>
   );
 }
+
+{/* <Form.Control type="text" disabled
+className="form-control"
+value={clientId}
+/>
+<Button variant="secondary" onClick={copy} id="copy-clientId">Copy</Button> */}
