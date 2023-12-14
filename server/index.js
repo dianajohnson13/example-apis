@@ -9,6 +9,8 @@ import usersRouter from './src/routes/usersRouter.js';
 import authRouter from './src/routes/authRouter.js';
 import whoAmIRouter from './src/routes/whoAmIRouter.js';
 import developersRouter from './src/routes/developersRouter.js';
+import tasksRouter from './src/routes/tasksRouter.js';
+
 
 dotenv.config();
 
@@ -30,6 +32,8 @@ app.use('/api/auth', authRouter);
 app.use('/api/whoami', whoAmIRouter);
 
 app.use('/api/developers', developersRouter);
+
+app.use('/api/tasks', tasksRouter);
 
 const PORT = process.env.PORT || 5000;
 
