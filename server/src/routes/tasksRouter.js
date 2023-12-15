@@ -27,7 +27,7 @@ router.get('/', authenticateToken, async (req, res) => {
   }
 });
 
-// creates a new tast
+// creates a new task
 router.post('/', authenticateToken, async (req, res) => {
   try {
     const tasks = await pool.query(
@@ -48,6 +48,23 @@ router.post('/', authenticateToken, async (req, res) => {
   }
 });
 
+router.delete('/:id', authenticateToken, async (req, res) => {
+  try {
+    const taskId = req.params.id;
 
+    const { user_id } = req.user;
+
+    const tasks = await pool.query('SELECT * FROM tasks WHERE id = $1', [taskId]);
+
+    if (tasks.rows.length === 0) return res.status(404).json({error: "Task not found"});
+    if (tasks.rows[0].created_by !== user_id) return res.status(403).json({error: "Task does not belong to authenticated user"});
+    
+    await pool.query('DELETE FROM tasks WHERE id = $1', [taskId]);
+
+    return res.status(200).json({message:'Task deleted'});
+  } catch (error) {
+    res.status(500).json({error: error.message});
+  }
+});
 
 export default router;
