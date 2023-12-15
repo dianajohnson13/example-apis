@@ -8,11 +8,16 @@ In the `\server` directory:
 ```npm install```
 
 ### 2. Set up the Database
-Coming soon... 
-For now, see db.js and database.sql
+1. Install and setup your local [postgres](https://www.postgresql.org/)
+2. Use the commands defined in [database.sql](./server/database.sql) to create your database and tables
+3. Create a .env file with `DB_PASSWORD=<your-password>` (see [Define Environment Variables](#3-define-environment-variables)).
+
+**Note:** To reference database configuration, check out [./server/db.js](./server/db.js) 
 
 ### 3. Define Environment Variables
-Add .env with the following environment variables:
+Create an .env with the environment variables listed below.
+**Note:** If you already set up your database ([step 2](#2-set-up-the-database))) you should already have a .env file with your database variables configured.
+
 ```
 # Database
 DB_PASSWORD=<password>
