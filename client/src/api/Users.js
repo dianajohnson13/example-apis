@@ -1,8 +1,9 @@
+import { BASE_URL } from '.';
 import { getAccessToken } from '../utils/Auth';
 import { checkAuth } from './Auth';
 
 export const signup = async (newUser) => {
-    const resp = await fetch("/api/users", {
+    const resp = await fetch(`${BASE_URL}/api/users`, {
       method: 'POST',
       headers: {
         "content-type": "application/json",
@@ -21,7 +22,7 @@ export const signup = async (newUser) => {
 }
 
 export const getUserDetails = async (retries = 0) => {
-  const resp = await fetch("/api/whoami", {
+  const resp = await fetch(`${BASE_URL}/api/whoami`, {
     method: 'GET',
     headers: {
       "content-type": "application/json",

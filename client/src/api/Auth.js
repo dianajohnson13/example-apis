@@ -1,8 +1,9 @@
 import { storeAuth, clearAuth } from '../utils/Auth';
+import {BASE_URL} from './index';
 
 
 export const checkAuth = async () => {
-    const resp = await fetch("/api/auth/refresh_token");
+    const resp = await fetch(`${BASE_URL}/api/auth/refresh_token`);
       if (resp.ok) {
           return resp.json()
             .then(data => {
@@ -16,7 +17,7 @@ export const checkAuth = async () => {
   }
 
   export const login = async (user) => {
-    const resp = await fetch("/api/auth/login", {
+    const resp = await fetch(`${BASE_URL}/api/auth/login`, {
       method: 'POST',
       headers: {
         "content-type": "application/json",
@@ -44,7 +45,7 @@ export const checkAuth = async () => {
   export const logout = async () => {
     clearAuth();
 
-    const resp = await fetch("/api/auth/refresh_token", {
+    const resp = await fetch(`${BASE_URL}/api/auth/refresh_token`, {
       method: 'DELETE',
       headers: {
         "accept": "application/json"

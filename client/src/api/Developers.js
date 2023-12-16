@@ -1,8 +1,9 @@
+import { BASE_URL } from '.';
 import { getAccessToken } from '../utils/Auth';
 import { checkAuth } from './Auth';
 
 export const generateAPIKey = async (user) => {
-    const resp = await fetch("/api/developers", {
+    const resp = await fetch(`${BASE_URL}/api/developers`, {
       method: 'POST',
       headers: {
         "content-type": "application/json",
@@ -30,7 +31,7 @@ export const generateAPIKey = async (user) => {
   }
   
   export const deleteAPIKey = async (clientId) => {
-    const resp = await fetch(`/api/developers?clientId=${clientId}`, {
+    const resp = await fetch(`${BASE_URL}/api/developers?clientId=${clientId}`, {
       method: "DELETE",
       headers: {
         "accept": "application/json",

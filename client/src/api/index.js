@@ -1,0 +1,1 @@
+export const BASE_URL = window.location.hostname === 'localhost' ? "http://localhost:5000" : "https://taskerly-server-9065de8e6824.herokuapp.com/";

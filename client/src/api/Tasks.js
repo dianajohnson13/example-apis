@@ -1,8 +1,9 @@
+import { BASE_URL } from '.';
 import { getAccessToken } from '../utils/Auth';
 import { checkAuth } from './Auth';
 
 export const getUserTasks = async (retries = 0) => {
-    const resp = await fetch("/api/tasks", {
+    const resp = await fetch(`${BASE_URL}/api/tasks`, {
       method: 'GET',
       headers: {
         "authorization": `Bearer ${getAccessToken()}`
@@ -28,7 +29,7 @@ export const getUserTasks = async (retries = 0) => {
   }
 
   export const createTask = async (task, retries = 0) => {
-    const resp = await fetch("/api/tasks", {
+    const resp = await fetch(`${BASE_URL}/api/tasks`, {
       method: 'POST',
       headers: {
         "authorization": `Bearer ${getAccessToken()}`,
