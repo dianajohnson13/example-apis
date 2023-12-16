@@ -46,7 +46,7 @@ export default function Dashboard() {
     }
 
     return user ? (
-      <div>
+      <div className="col-lg-10 mx-auto">
           <h1 className="m-4 text-center">{user.name ? `Welcome ${user.name}!` : "Welcome!"}</h1>
       
           <div className="container mb-4">
@@ -60,7 +60,7 @@ export default function Dashboard() {
                   <input className="form-control" type="text" name="task-title" value={newTask.title || ""} required onChange={handleTextInputChange} />
                 </div>
                 <div className="col-auto">
-                  <button className="btn btn-primary" role="submit">Add</button>
+                  <button className="btn btn-primary" type="submit">Add</button>
                 </div>
               </div>
             </form>
@@ -72,11 +72,9 @@ export default function Dashboard() {
 
                 tasks.map(task => {
                   return (
-                    <div className="container">
-                        <div className="list-group  mt-3 p-2 shadow">
-                          <strong>{task.title}</strong>
-                          <p>{task.description}</p>
-                        </div>
+                      <div className="list-group  mt-3 p-2 shadow" key={task.id}>
+                        <strong>{task.title}</strong>
+                        <p>{task.description}</p>
                       </div>
                   );
                 })
