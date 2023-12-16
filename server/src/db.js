@@ -4,13 +4,7 @@ const { Pool } = pg;
 
 dotenv.config();
 
-const localPoolConfig = {
-  user: 'postgres',
-  password: process.env.DB_PASSWORD,
-  host: 'localhost',
-  port: 5432,
-  database: 'exampledb'
-};
+const localPoolConfig = process.env.DB_CONFIG;
 
 const poolConfig = process.env.DATABASE_URL ? {
   connectionString: process.env.DATABASE_URL,
