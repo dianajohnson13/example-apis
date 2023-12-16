@@ -10,7 +10,7 @@ In the `\server` directory:
 ### 2. Set up the Database
 1. Install and setup your local [postgres](https://www.postgresql.org/)
 2. Use the commands defined in [database.sql](./server/database.sql) to create your database and tables
-3. Create a `.env` file with `DB_CONFIG` defined (see [Define Environment Variables](#3-define-environment-variables)).
+3. Create a `.env` file with the `DB_` environment variables defined (see [Define Environment Variables](#3-define-environment-variables)).
 
 To reference database configuration, check out [./server/db.js](./server/db.js) 
 
@@ -21,13 +21,11 @@ Create an `.env` file with the environment variables listed below.
 
 ```
 # Database
-DB_CONFIG = {
-  user: <user>,
-  password: <password>,
-  host: 'localhost',
-  port: 5432,
-  database: exampledb
-}
+DB_DATABASE=exampledb
+DB_PASSWORD=<password>
+DB_USER=postgres
+DB_PORT=5432
+DB_HOST=localhost
 
 # Authentication
 ACCESS_TOKEN_SECRET=<secret>
