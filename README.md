@@ -67,4 +67,4 @@ To view all public API endpoints, visit [API Reference Index](https://github.com
 - Postgres
 - React
 
-Deployed on Heroku
+Deployed on Heroku at https://taskerly-client-39d59481d499.herokuapp.com/
