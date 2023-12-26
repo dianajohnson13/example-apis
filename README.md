@@ -53,8 +53,6 @@ In the `\client` directory:
 
 Client runs on http://localhost:3000
 
-**Note**: In development, the client uses the local server as a proxy. The server should be [run on port :5000](https://github.com/dianajohnson13/example-apis#4-run-the-server) before starting up the client.
-
 ## Endpoints
 ### Public Endpoints
 To view all public API endpoints, visit [API Reference Index](https://github.com/dianajohnson13/taskerly/wiki/*-get-started-with-taskerly's-api-*) page in this project's Wiki.
