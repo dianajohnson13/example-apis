@@ -16,7 +16,11 @@ router.get('/', authenticateToken, async (req, res) => {
         taskId: task.id,
         title: task.title,
         description: task.description,
-        completed: task.completed
+        completed: task.completed,
+        createdBy: task.created_by,
+        createdAt: task.created_at,
+        updatedAt: task.updated_at,
+        completedAt: task.completed_at
       }
     });
     
@@ -40,7 +44,11 @@ router.post('/', authenticateToken, async (req, res) => {
       taskId: newTask.id,
       title: newTask.title,
       description: newTask.description,
-      completed: newTask.completed
+      completed: newTask.completed,
+      createdBy: newTask.created_by,
+      createdAt: newTask.created_at,
+      updatedAt: newTask.updated_at,
+      completedAt: newTask.completed_at
     });
 
   } catch (error) {
