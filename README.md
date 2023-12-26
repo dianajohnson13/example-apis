@@ -57,7 +57,7 @@ Client runs on http://localhost:3000
 
 ## Endpoints
 ### Public Endpoints
-To view all public API endpoints, visit [API Reference Index](https://github.com/dianajohnson13/example-apis/wiki/API-Reference-Index) page in this project's Wiki.
+To view all public API endpoints, visit [API Reference Index](https://github.com/dianajohnson13/taskerly/wiki/*-get-started-with-taskerly's-api-*) page in this project's Wiki.
 
 
 ## Stack
@@ -66,3 +66,5 @@ To view all public API endpoints, visit [API Reference Index](https://github.com
 - Express
 - Postgres
 - React
+
+Deployed on Heroku
