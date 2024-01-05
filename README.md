@@ -1,5 +1,18 @@
 # Taskerly
-Description coming soon.
+Taskerly is a simple task management application.
+
+I'm in the process of creating it as a sample project to demonstrate my backgrounds in both software engineering and technical documentation. 
+
+To try it out, you can:
+ * Follow the local dev instructions outlined below, OR
+ * Visit https://taskerly-client-39d59481d499.herokuapp.com/ to create a production account
+
+After creating an account, you can create tasks on the client side or create an API Key to access Taskerly's API programatically.
+
+To view developer documentation, visit the project's [wiki](https://github.com/dianajohnson13/taskerly/wiki). 
+
+> **Note:** Although you can clearly view all of the code in this project, I intentially wrote the wiki as if it were public documentation for a private project. As such, endpoints that I would not typically expose publicaly are not documented in the wiki.
+
 
 ## Local Server Setup
 In the `\server` directory:
