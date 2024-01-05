@@ -1,7 +1,7 @@
 # Taskerly
 Taskerly is a simple task management application.
 
-I'm in the process of creating it as a sample project to demonstrate my backgrounds in both software engineering and technical documentation. 
+I'm creating it as a sample project to demonstrate my backgrounds in both software engineering and technical documentation. 
 
 To try it out, you can:
  * Follow the local dev instructions outlined below, OR
