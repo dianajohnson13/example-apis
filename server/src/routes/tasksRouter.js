@@ -82,6 +82,50 @@ router.post('/', authenticateToken, async (req, res) => {
   }
 });
 
+// updates a task
+router.put('/:id', authenticateToken, async (req, res) => {
+  try {
+    const taskId = req.params.id;
+    const newData = req.body;
+
+    const tasks = await pool.query('SELECT * FROM tasks WHERE id = $1', [taskId]);
+    const task = tasks.rows[0];
+
+    if (!task) return res.status(404).json({error: "Task not found"});
+    if (task.created_by !== req.user.user_id) return res.status(403).json({error: "Task does not belong to authenticated user"});
+
+    const now = new Date();
+    // for each data key, update task object
+    Object.keys(newData).forEach(key => {
+      task[key] = newData[key];
+      if (key === "completed" && newData[key]) task.completedAt = now;
+    });
+
+    // update db with updated task object
+    const updatedTasks = await pool.query(
+      'UPDATE tasks SET title = ($1), description = ($2), completed = ($3), completed_at = ($4), updated_at = ($5)  WHERE id=($6) RETURNING *',
+      [task.title, task.description, task.completed, task.completedAt, now, task.id]
+    );
+
+    const updated = updatedTasks.rows[0];
+
+    res.json({
+      taskId: updated.id,
+      title: updated.title,
+      description: updated.description,
+      completed: updated.completed,
+      createdBy: updated.created_by,
+      createdAt: updated.created_at,
+      updatedAt: updated.updated_at,
+      completedAt: updated.completed_at
+    });
+
+  } catch (error) {
+    res.status(500).json({error: error.message});
+  }
+});
+
+
 router.delete('/:id', authenticateToken, async (req, res) => {
   try {
     const taskId = req.params.id;
